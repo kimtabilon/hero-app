@@ -24,12 +24,27 @@
     </ion-row>
 
     <span class="service-label">
-      Help
+      Contact Us
     </span>
   </div>  
 
-    <ion-list lines="none"> 
-    	<h2>Hero App</h2>
-    	Copyright @ 2019. iWeb IT Solutions
-    </ion-list>
+  <ion-list lines="none">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Powered by iWeb IT Solutions</ion-card-subtitle>
+        <ion-card-title>Hero Provider App</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-chip (click)="tapCall()">
+      <ion-icon name="phone-portrait"></ion-icon>
+      <ion-label>Call Support</ion-label>
+    </ion-chip>
+
+    <ion-chip (click)="sendEmail()">
+      <ion-icon name="mail"></ion-icon>
+      <ion-label>Email Us</ion-label>
+    </ion-chip>
+  </ion-list>
 </ion-content>

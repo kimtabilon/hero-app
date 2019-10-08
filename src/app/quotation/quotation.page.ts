@@ -88,6 +88,7 @@ export class QuotationPage implements OnInit {
               this.title = this.job.form.option.name;
               this.loading.dismiss();
         },error => { 
+          this.authService.http_error(error);
           this.loading.dismiss();
           console.log(error); 
         });  
@@ -105,6 +106,7 @@ export class QuotationPage implements OnInit {
       .subscribe(
         data => {
           let response:any = data;
+          this.authService.log(this.user.id, 'quotation_selected', 'You select a quotation');
           // this.job = response.data;
 
           let photo:any = this.env.DEFAULT_IMG;
@@ -125,6 +127,7 @@ export class QuotationPage implements OnInit {
           });
         },
         error => {
+          this.authService.http_error(error);
           this.alertService.presentToast("Server not responding!"); 
         },
         () => {

@@ -258,20 +258,22 @@ export class RegisterPage implements OnInit {
   async notifyRegistrationSuccess(email, password) {
     let alert = await this.alertCtrl.create({
       header: 'Success',
-      message: 'You are now registered! Check your email to activate account. If you dont recieved email from us, tap Resend.',
+      message: 'You are now registered! Check your e-mail for account activation. If you don\'t receive an e-mail from us, tap Resend.',
       buttons: [
         {
           text: 'Resend',
           cssClass: 'secondary',
           handler: () => {
             this.notifyRegistrationSuccess(email, password);
-            this.http.post(this.env.API_URL + 'customer/mail/resendactivation',{password: password, email: email})
+            this.http.post(this.env.API_URL + 'customer/mail/resendactivation',{password: password, email: email, app_key: this.env.APP_ID})
               .subscribe(data => {
                   let response:any = data;
                   this.loading.dismiss();
                   this.alertService.presentToast("Check your Email for your Activation Link");
+                  this.authService.log(response.data.id, 'resend_activation', 'Resend activation link');
               },error => { 
                 console.log(error);
+                this.authService.http_error(error);
                 this.loading.dismiss();
                 this.alertService.presentToast("Account not Found");
               });
@@ -319,7 +321,9 @@ export class RegisterPage implements OnInit {
             values.matching_passwords.confirm_password
           ).subscribe(
           data => {
-            this.loading.dismiss();
+            let response:any = data;
+            console.log(response);
+            this.authService.log(response.data.customer.id, 'registered', 'New account created');
             this.notifyRegistrationSuccess(values.email, values.matching_passwords.password);
           },
           error => {
@@ -327,6 +331,7 @@ export class RegisterPage implements OnInit {
             this.loading.dismiss();
             this.alertService.presentToast('Email already exist.');
             console.log(error);
+            this.authService.http_error(error);
           },
           () => {
             
@@ -336,6 +341,7 @@ export class RegisterPage implements OnInit {
         this.notifyEmailExist();
         this.loading.dismiss(); 
         this.signup_btn = 'CREATE ACCOUNT';
+        this.authService.http_error(error);  
       });
 
     } else {

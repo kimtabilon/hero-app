@@ -21,6 +21,9 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Market } from '@ionic-native/market/ngx';
 import { OrderModule } from 'ngx-order-pipe';
 
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 import {HeroPageModule} from './hero/hero.module';
 import {ChatPageModule} from './chat/chat.module';
 import {NetworkPageModule} from './network/network.module';
@@ -58,7 +61,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
     WebView,
     FilePath,
     AppVersion,
-    Market
+    Market,
+    CallNumber,
+    EmailComposer,
   ],
   bootstrap: [AppComponent]
 })

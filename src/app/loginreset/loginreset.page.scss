@@ -8,76 +8,83 @@
   $menu-blue: #101622;
   $item-blue: #314e70;
   $blue: #2d4b67;
-  $gold: #d9a978;
+  $gold: #93c967;
 
   ion-content {
-  	.body {
-    	min-height:100%;
-  		background:linear-gradient(0deg,rgba(20,28,47,.8),rgba(20,28,47,.9)),url('../../assets/img/bg-img-sm.png');
-  		background-size:cover;
-  		width: 100%;
-  	}
 
-  	.btn {
-  		border-radius: 40px;
-  		display: block;
-  		width: 90%;
-  		margin: 5px auto;
-  		padding: 10px;
-  		font-size: 12pt;
-  	}
+    .btn {
+      border-radius: 40px;
+      display: block;
+      width: 90%;
+      margin: 5px auto;
+      padding: 10px;
+      font-size: 12pt;
+    }
 
-  	.btn-login {
-  		border: 2px solid $gold;
-  		background: $gold;
-  		color: $brown;
-  	}
+    .btn-login {
+      border: 2px solid $gold;
+      background: $gold;
+      color: $brown;
+    }
+
+    .forget-pass {
+      color: #fff;
+      padding: 10px 25px;
+      text-align: right;
+      margin-top: 20px;
+    }
 
     .custom-loader-class {
       --background: none;
     }
 
-  	.btn-signup {
-  		background: none;
-  		border: 2px solid $gold;
-  		color: #eee;
-  	}
+    .btn-signup {
+      background: none;
+      border: 2px solid $gold;
+      color: #eee;
+    }
+    .no-margin-top {
+      margin-top: -10px;
+    }
 
-  	.form-field {
-  		padding: 0 20px;
-  		color: $gold;
-  		margin-bottom: 20px;
+    .form-field {
+      padding: 0 20px;
+      color: $gold;
+      margin-bottom: 20px;
 
-  		.icon {
-  			margin-bottom: -12px;
-  		}
+      .icon {
+        margin-bottom: -12px;
+      }
 
-  		.field {
-  			border-bottom: 1px solid $gold;
-  		}
-  	}
-	    
-	.login {
-		.logo-wrap {
-			text-align: center;
+      .field {
+        border-bottom: 1px solid $gold;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+      }
+    }
+      
+  .login {
+    .logo-wrap {
+      text-align: center;
 
-			.logo {
-				margin-top: 20px;
-				width: 140px;
-			}
+      .logo {
+        margin-top: 20px;
+        width: 70px;
+      }
 
-			.label {
-				padding: 4px 30px;
-				border-radius: 10px;
-				background: $dark-blue;
-				color: $gold;
-				font-size: 12pt;
-				margin-top: 20px;
-				margin-bottom: 20px;
-			}
-		}
-			
-	} 
+      .label {
+        padding: 4px 30px;
+        border-radius: 10px;
+        background: $dark-blue;
+        color: $gold;
+        font-size: 12pt;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+      
+  } 
 
   }
 

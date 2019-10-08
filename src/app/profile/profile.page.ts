@@ -65,6 +65,7 @@ export class ProfilePage implements OnInit {
   images = [];
   categories:any;
   reviews:any = [];
+  logs:any = [];
 
   provinces:any = [];
   cities:any = [];
@@ -226,6 +227,21 @@ export class ProfilePage implements OnInit {
     this.loading.dismiss();
   }
 
+  tapLogs(){
+    this.loading.present();
+    this.http.post(this.env.HERO_API + 'logs/byUser',{ user_id: this.user.id, app_key: this.env.APP_ID })
+      .subscribe(data => {
+        let response:any = data; 
+        this.logs = response.data;
+        console.log(response);
+      },error => { 
+        this.alertService.presentToast("Somethings went wrong");
+        console.log(error);
+    },() => { });  
+    this.page='logs';
+    this.loading.dismiss();
+  }
+
   tapReviews(){
     this.loading.present();
     this.http.post(this.env.HERO_API + 'reviews/byClient',{ customer_id: this.user.id })
@@ -267,7 +283,7 @@ export class ProfilePage implements OnInit {
         this.loading.dismiss();
       },
       () => { 
-        this.alertService.presentToast("Account Saved"); 
+        this.alertService.presentToast("Saved Changes."); 
         this.loading.dismiss();
     });  
   }

@@ -46,17 +46,18 @@ export class LoginPage implements OnInit {
       this.login_btn = 'Please wait...';
       this.authService.login(form.value.email, form.value.password).subscribe(
         data => {
-          // console.log(data);
+          let response:any = data;
           this.loading.dismiss();
           this.storage.set('customer', data)
-          // this.alertService.presentToast("Logged In");
           this.login_btn = 'LOGIN';
+          this.authService.log(response.data.id, 'login', 'You have been successfully logged in!');
         },
         error => {
           console.log(error);
           this.loading.dismiss();
           this.alertService.presentToast("Wrong Email/Password or Inactive account. ");
           this.login_btn = 'LOGIN';
+          this.authService.http_error(error);
           // this.alertService.presentToast(error.message);
         },
         () => {

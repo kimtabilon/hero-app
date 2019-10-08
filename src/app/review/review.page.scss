@@ -1,0 +1,17 @@
+
+ion-content {
+  --background: none;  
+}
+
+ion-list {
+  padding: 10px !important;
+  background: none !important;
+  min-height: 0px;
+} 
+
+ion-item {
+  --background: none !important;
+  --border-radius: 0px !important;
+  color: #333;
+  margin-bottom: 5px; 
+}

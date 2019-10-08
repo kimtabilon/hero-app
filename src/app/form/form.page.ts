@@ -218,7 +218,7 @@ export class FormPage implements OnInit {
 
     if(this.schedule_date == '' || this.schedule_time=='') {
       error++;
-      message+= "Required Schedule Date & Time. ";
+      message+= "REQUIRED: DATE AND TIME. ";
     }
 
     // console.log(this.attributes);
@@ -275,7 +275,7 @@ export class FormPage implements OnInit {
                     this.alertService.presentToast("Server not responding!"); 
                   },
                   () => {
-                      this.alertService.presentToast("Open Job sent to all heroes. Wait for quotation."); 
+                      this.alertService.presentToast("Your Job Request has been sent to all Heroes. Please wait for the quotation."); 
                       this.router.navigate(['/tabs/job'],{
                         queryParams: {
                           // service : JSON.stringify({ 
@@ -320,7 +320,7 @@ export class FormPage implements OnInit {
 
       if(selected_time < current_time) {
         error++;
-        message+= "Schedule time must be 2 hours ahead if you scheduled today. ";
+        message+= "Scheduled time must be two (2) hours ahead if booking is on the same day.";
       }
     }
 

@@ -29,6 +29,10 @@
     <span class="service-label" (click)="tapReviews()" [ngClass]="page=='reviews' ? 'active-tab' : ''">
       <ion-icon name="mail"></ion-icon> Reviews
     </span>
+
+    <span class="service-label" (click)="tapLogs()" [ngClass]="page=='logs' ? 'active-tab' : ''">
+      <ion-icon name="list-box"></ion-icon> Logs
+    </span>
     <!-- <span class="service-label" (click)="tapMyPhoto()" [ngClass]="page=='photo' ? 'active-tab' : ''">
       <ion-icon name="camera"></ion-icon>
     </span> -->
@@ -278,4 +282,14 @@
 
     <button class="btn btn-login" (click)="tapUpdateContact()" >UPDATE</button>
   </ion-list>  
+
+  <ion-list *ngIf="page == 'logs'">
+    <ion-row padding class="form-header"><ion-col class="text-center">ACTIVITY LOG</ion-col></ion-row>
+
+    <ion-item-divider *ngFor="let log of logs">
+      <ion-label text-wrap>
+        {{log.created_at}} {{log.label}}
+      </ion-label>
+    </ion-item-divider>
+  </ion-list> 
 </ion-content>

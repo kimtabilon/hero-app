@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, ActionSheetController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Profile } from 'src/app/models/profile';
@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
+import { ChatPage } from '../chat/chat.page';
 
 @Component({
   selector: 'app-job',
@@ -47,7 +48,9 @@ export class JobPage implements OnInit {
     public loading: LoadingService,
     public getService: GetService,
     public router : Router,
-    private env: EnvService
+    private env: EnvService,
+    public actionSheetController: ActionSheetController,
+    public modalController: ModalController,
   ) { 
   	this.menu.enable(true);	
   }
@@ -144,6 +147,69 @@ export class JobPage implements OnInit {
       },error => { this.myjobstitle = 'My Jobs'; });
     this.loading.dismiss();
   } 
+
+  async presentActionSheet(job) {
+    let actions:any = {
+      buttons: [{
+        text: 'View Details',
+        icon: 'eye',
+        handler: () => {
+          this.loading.present();
+
+          switch (job.status) {
+            case "For Quotation":
+              this.router.navigate(['/tabs/quotation'],{
+                  queryParams: {
+                      job_id : job.id
+                  },
+                });
+              break; 
+            
+            default:
+              this.router.navigate(['/tabs/jobview'],{
+                  queryParams: {
+                      job_id : job.id
+                  },
+                });
+              break;
+          }
+          this.loading.dismiss();
+        }
+      }, {
+        text: 'Chat with Hero',
+        icon: 'chatbubbles',
+        handler: () => {
+          this.openChat(job);        }
+      }, 
+      {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    };
+    const actionSheet = await this.actionSheetController.create(actions);
+    await actionSheet.present();
+  } 
+
+  async openChat(job) {
+    const modal = await this.modalController.create({
+      component: ChatPage,
+      componentProps: { 
+        job: job,
+        customer: JSON.parse(job.customer_info)
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        let response:any = data;
+    });
+
+    return await modal.present();
+  }
 
   logout() {
     this.loading.present();

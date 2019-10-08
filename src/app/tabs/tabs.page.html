@@ -19,7 +19,8 @@
       <!-- <ion-label>Tab Three</ion-label> -->
     </ion-tab-button>
 
-    <ion-tab-button tab="inbox">
+    <ion-tab-button tab="inbox" id="notification-button" (click)="clearNoti()">
+      <span *ngIf="count" id="notifications-badge" color="danger">{{count}}</span> 
       <ion-icon name="notifications"></ion-icon>
       <ion-label>Inbox</ion-label>
     </ion-tab-button>
