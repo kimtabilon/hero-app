@@ -149,48 +149,51 @@ export class JobPage implements OnInit {
   } 
 
   async presentActionSheet(job) {
-    let actions:any = {
-      buttons: [{
-        text: 'View Details',
-        icon: 'eye',
-        handler: () => {
-          this.loading.present();
+    let btns:any = [];
 
-          switch (job.status) {
-            case "For Quotation":
-              this.router.navigate(['/tabs/quotation'],{
-                  queryParams: {
-                      job_id : job.id
-                  },
-                });
-              break; 
-            
-            default:
-              this.router.navigate(['/tabs/jobview'],{
-                  queryParams: {
-                      job_id : job.id
-                  },
-                });
-              break;
-          }
-          this.loading.dismiss();
+    btns.push({
+      text: 'View Details',
+      icon: 'eye',
+      handler: () => {
+        this.loading.present();
+        let route:any = '';
+        switch (job.status) {
+          case "For Quotation":
+            route = '/tabs/quotation';
+            break; 
+          
+          default:
+            route = '/tabs/jobview';
+            break;
         }
-      }, {
+
+        this.router.navigate([route],{
+          queryParams: {
+              job_id : job.id
+          },
+        });
+        this.loading.dismiss();
+      }
+    });
+
+    if(job.status == 'Pending' || job.status == 'For Confirmation') {
+      btns.push({
         text: 'Chat with Hero',
         icon: 'chatbubbles',
         handler: () => {
           this.openChat(job);        }
-      }, 
-      {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    };
-    const actionSheet = await this.actionSheetController.create(actions);
+      });
+    }
+    btns.push({
+      text: 'Cancel',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
+    });
+
+    const actionSheet = await this.actionSheetController.create({ buttons: btns });
     await actionSheet.present();
   } 
 

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingService } from 'src/app/services/loading.service';
 import { HeroPage } from '../hero/hero.page';
+import { InclusionPage } from '../inclusion/inclusion.page';
 
 @Component({
   selector: 'app-form',
@@ -460,6 +461,22 @@ export class FormPage implements OnInit {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
+  }
+
+  async showInclusion() {
+    const modal = await this.modalController.create({
+      component: InclusionPage,
+      componentProps: { 
+        form: this.form
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+      }
+    );
+
+    return await modal.present();
   }
 
   logout() {

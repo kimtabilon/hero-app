@@ -30,6 +30,7 @@ import {NetworkPageModule} from './network/network.module';
 import {ReviewPageModule} from './review/review.module';
 import {ProfileviewPageModule} from './profileview/profileview.module';
 import {TermPageModule} from './term/term.module';
+import {InclusionPageModule} from './inclusion/inclusion.module';
 
 import { IonicSelectableModule } from 'ionic-selectable';
 
@@ -50,6 +51,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     TermPageModule,
     IonicSelectableModule,
     NetworkPageModule,
+    InclusionPageModule,
   ],
   providers: [
     StatusBar,

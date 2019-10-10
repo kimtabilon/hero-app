@@ -93,87 +93,64 @@ export class InboxPage implements OnInit {
   }
 
   async tapNoti(noti) {
-    let options:any = {
-        buttons: [{
-          text: 'Delete Notification',
-          role: 'destructive',
-          icon: 'trash',
-          handler: () => {
-            this.loading.present();
-            this.http.post(this.env.HERO_API + 'inboxes/hide',{id: noti.id})
-            .subscribe(data => {
-                let response:any = data;
-                noti.seen = 'Yes';
-                this.loading.dismiss();
-            },error => { this.loading.dismiss(); });
-          }
-        }, {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }]
-      };
+    let btns:any = [];
 
     if(noti.type == 'Available Job' || noti.type == 'For Confirmation'){
-       options = {
-        buttons: [{
-          text: 'View Job',
-          icon: 'arrow-dropright-circle',
-          handler: () => {
-            switch (noti.type) {
-              case "Available Job":
-                this.router.navigate(['/tabs/quotation'],{
-                    queryParams: {
-                        job_id : noti.redirect_id,
-                        noti_id: noti.id
-                    },
-                  });
-                this.loading.dismiss();
-                break;
+      btns.push({
+        text: 'View Job',
+        icon: 'arrow-dropright-circle',
+        handler: () => {
+          let route:any = '';
+          switch (noti.type) {
+            case "Available Job":
+              route = '/tabs/jobview';
+              break;
 
-              case "For Confirmation":
-                this.router.navigate(['/tabs/jobview'],{
-                    queryParams: {
-                        job_id : noti.redirect_id,
-                        noti_id: noti.id
-                    },
-                  });
-                this.loading.dismiss();
-                break;  
+            case "For Confirmation":
+              route = '/tabs/jobview';
+              break;  
 
-              default:
-                this.loading.dismiss();
-                break;
-            }
+            default:
+              this.loading.dismiss();
+              break;
           }
-        }, {
-          text: 'Delete Notification',
-          role: 'destructive',
-          icon: 'trash',
-          handler: () => {
-            this.loading.present();
-            this.http.post(this.env.HERO_API + 'inboxes/hide',{id: noti.id})
-            .subscribe(data => {
-                let response:any = data;
-                noti.seen = 'Yes';
-                this.loading.dismiss();
-            },error => { this.loading.dismiss(); });
-          }
-        }, {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }]
-      };
-    }
 
-    const actionSheet = await this.actionSheetController.create(options);
+          this.router.navigate([route],{
+            queryParams: {
+                job_id : noti.redirect_id,
+                noti_id: noti.id
+            },
+          });
+          this.loading.dismiss();
+        }
+      });
+    }  
+
+    btns.push({
+      text: 'Delete Notification',
+      role: 'destructive',
+      icon: 'trash',
+      handler: () => {
+        this.loading.present();
+        this.http.post(this.env.HERO_API + 'inboxes/hide',{id: noti.id})
+        .subscribe(data => {
+            let response:any = data;
+            noti.seen = 'Yes';
+            this.loading.dismiss();
+        },error => { this.loading.dismiss(); });
+      }
+    });
+
+    btns.push({
+      text: 'Cancel',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
+    });
+
+    const actionSheet = await this.actionSheetController.create({ buttons: btns });
     await actionSheet.present();
       
   }

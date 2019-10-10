@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'review', loadChildren: './review/review.module#ReviewPageModule' },
   { path: 'chat', loadChildren: './chat/chat.module#ChatPageModule' },
   { path: 'network', loadChildren: './network/network.module#NetworkPageModule' },
-  { path: 'ads', loadChildren: './ads/ads.module#AdsPageModule' }
+  { path: 'ads', loadChildren: './ads/ads.module#AdsPageModule' },
+  { path: 'inclusion', loadChildren: './inclusion/inclusion.module#InclusionPageModule' }
 ];
 @NgModule({
   imports: [

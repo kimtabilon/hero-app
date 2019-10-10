@@ -253,12 +253,7 @@ ion-item {
   padding: 0 90px;
   margin-top: 15px;
 }
-/* 
-#93c967 - Green
-#1486a0 - Blue
-#595959 - Dark Gray
-#c2c2c2 - Light Gray 
-*/
+
 .btn {
   border-radius: 40px;
   display: block;
@@ -280,7 +275,12 @@ ion-item {
   color: #93c967; 
 }
 
-
+/* 
+#93c967 - Green
+#1486a0 - Blue
+#595959 - Dark Gray
+#c2c2c2 - Light Gray 
+*/
 .progress {
   display: inline-flex;
   align-items: center;
@@ -296,7 +296,7 @@ ion-item {
   &__circle {
     width: 15px;
     height: 15px;
-    border: 3px solid $gold;
+    border: 3px solid #1486a0;
     border-radius: 50%;
     display: flex;
     align-items: center; 
@@ -312,16 +312,16 @@ ion-item {
   &__bar {
     flex: 1;
     height: 4px;
-    background: $gold;
+    background: #1486a0;
   }
   
   &--done {
-    background: $gold;
+    background: #93c967;
   }
   
   &--active {
-    border: 3px solid $gold;
-    color: $item-blue;
+    border: 3px solid #1486a0;
+    color: #1486a0;
   }
 }
 

@@ -104,6 +104,7 @@
 
     <button class="btn btn-login" (click)="findHero()"  *ngIf="quote_enable == 'No'">{{button_text}}</button>
     <button class="btn btn-login" (click)="requestQuote()"  *ngIf="quote_enable == 'Yes'">{{button_text}}</button>
+    <button class="btn btn-signup" (click)="showInclusion()" *ngIf="form.inclusions !== null">Show Inclusions</button>
   </ion-list>
     
 </ion-content>
