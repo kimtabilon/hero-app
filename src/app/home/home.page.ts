@@ -52,18 +52,8 @@ export class HomePage implements OnInit {
     
   }
 
-  doRefresh(event) {    
-    this.http
-    .post(this.env.HERO_API + 'customer/login',{email: this.user.email, password:  this.user.password})
-    .subscribe(data => {
-        let response:any = data;
-        this.storage.set('customer', response);
-        this.user = response.data;
-        this.ionViewWillEnter();
-    },error => { 
-      this.logout();
-      console.log(error); 
-    });
+  doRefresh(event) {   
+    this.ionViewWillEnter(); 
 
     setTimeout(() => {
       event.target.complete();
@@ -78,6 +68,8 @@ export class HomePage implements OnInit {
       // console.log(val.data);
       this.user = val.data;
       this.profile = val.data.profile;
+
+      this.checkUser(this.user);
 
       if(this.profile.photo!==null) {
         this.photo = this.env.IMAGE_URL + 'uploads/' + this.profile.photo;
@@ -121,6 +113,19 @@ export class HomePage implements OnInit {
       this.alertService.presentToast("No Service Available");
     }
     this.loading.dismiss();  
+  }
+
+  checkUser(user) {
+    this.http
+    .post(this.env.HERO_API + 'customer/login',{email: user.email, password:  user.password})
+    .subscribe(data => {
+        let response:any = data;
+        this.storage.set('customer', response);
+        this.user = response.data;
+    },error => { 
+      this.logout();
+      console.log(error); 
+    });
   }
 
   logout() {

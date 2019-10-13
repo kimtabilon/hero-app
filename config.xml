@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.heroapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.heroapp" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Hero Services</name>
     <description>HERO (HeroApp.PH) is a mobile platform that connects customers who wish to book home services directly with skilled workers without going through middlemen or agencies. Initial home services include house repairs, painting, or installation work by a general handyman, electrician and appliance repair, housekeeping services like cleaning and ironing, tutoring, and nanny/childcare services, rendered by graduates of TESDA or similar equivalent training centers. </description>
     <author email="apps@mjsitechsolutions.com" href="http://ionicframework.com/">iWeb Dev Team</author>

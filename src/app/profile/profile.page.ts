@@ -425,7 +425,7 @@ export class ProfilePage implements OnInit {
               filePath: filePath
           };
    
-          this.images = [newEntry, ...this.images];
+          this.images = [newEntry, this.images];
           this.ref.detectChanges(); // trigger change detection cycle
       });
   }
