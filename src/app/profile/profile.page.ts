@@ -377,7 +377,10 @@ export class ProfilePage implements OnInit {
           quality: 100,
           sourceType: sourceType,
           saveToPhotoAlbum: false,
-          correctOrientation: true
+          correctOrientation: true,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE
       };
    
       this.camera.getPicture(options).then(imagePath => {
