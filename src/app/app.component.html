@@ -1,3 +1,4 @@
 <ion-app>
+	<div *ngIf="environment == 'test'" style="text-align: center; background: red; color: #fff; z-index: 100;">You are in a Test Environment</div>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
