@@ -101,6 +101,7 @@ export class AuthService {
     this.storage.get('customer').then((val) => {
       let user:any = val.data;
       this.log(user.id, 'logout', 'You have been successfully logged out!');
+      this.clear_player_id(user.id);
     });
     
     this.storage.remove("token");
@@ -158,5 +159,16 @@ export class AuthService {
       label = err.message + ' at line '+ err.line +' in '+err.file;
       this.log('0', 'system_error', label);
     }
+  }
+
+  clear_player_id(user_id) {
+    this.http.post(this.env.API_URL + 'customer/clear/playerID',{user_id: user_id})
+      .subscribe(data => { 
+        let response:any = data;
+      },error => { 
+        // this.alertService.presentToast("Server not responding!");
+        this.http_error(error);
+      },() => { 
+    });        
   }
 }

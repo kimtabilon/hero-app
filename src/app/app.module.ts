@@ -33,6 +33,7 @@ import {TermPageModule} from './term/term.module';
 import {InclusionPageModule} from './inclusion/inclusion.module';
 
 import { IonicSelectableModule } from 'ionic-selectable';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -66,6 +67,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     Market,
     CallNumber,
     EmailComposer,
+    OneSignal,
   ],
   bootstrap: [AppComponent]
 })
