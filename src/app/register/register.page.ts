@@ -15,6 +15,7 @@ import { CountryPhone } from './country-phone.model';
 import { OrderPipe } from 'ngx-order-pipe';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { TermPage } from '../term/term.page';
+import { PrivacyPage } from '../privacy/privacy.page';
 
 class Port {
   public id: number;
@@ -40,7 +41,7 @@ export class RegisterPage implements OnInit {
 
   eightenyearsAgo:any = '';
 
-  signup_btn:any = 'CREATE ACCOUNT';
+  signup_btn:any = 'SIGN UP';
 
   constructor(
     private http: HttpClient,
@@ -134,7 +135,7 @@ export class RegisterPage implements OnInit {
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       matching_passwords: this.matching_passwords_group,
-      terms: new FormControl(true, Validators.pattern('true'))
+      // terms: new FormControl(true, Validators.pattern('true'))
     });
   }
 
@@ -389,6 +390,22 @@ export class RegisterPage implements OnInit {
   async terms() {
     const modal = await this.modalController.create({
       component: TermPage,
+      componentProps: { 
+        user: {}
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        let response:any = data;
+    });
+
+    return await modal.present();
+  }
+
+  async privacy() {
+    const modal = await this.modalController.create({
+      component: PrivacyPage,
       componentProps: { 
         user: {}
       }

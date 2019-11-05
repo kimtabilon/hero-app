@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'chat', loadChildren: './chat/chat.module#ChatPageModule' },
   { path: 'network', loadChildren: './network/network.module#NetworkPageModule' },
   { path: 'ads', loadChildren: './ads/ads.module#AdsPageModule' },
-  { path: 'inclusion', loadChildren: './inclusion/inclusion.module#InclusionPageModule' }
+  { path: 'inclusion', loadChildren: './inclusion/inclusion.module#InclusionPageModule' },
+  { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyPageModule' }
 ];
 @NgModule({
   imports: [
