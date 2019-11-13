@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, AlertController, IonContent } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inclusion',
@@ -12,7 +12,6 @@ export class InclusionPage implements OnInit {
 
   constructor(
   	public modalController: ModalController,
-    public alertController: AlertController,
   ) { }
 
   ngOnInit() {

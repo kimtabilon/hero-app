@@ -29,8 +29,8 @@
         <img src="{{client.photo}}">
       </ion-avatar>
       <ion-label class="ion-text-wrap">
-        <p *ngIf="msg.from=='client'" class="text-right">{{msg.chat}}</p>
-        <p *ngIf="msg.from=='provider'">{{msg.chat}}</p>
+        <p *ngIf="msg.from=='client'" class="text-right">{{msg.chat}}<br><span class="msg-time">{{msg.created_at}}</span></p>
+        <p *ngIf="msg.from=='provider'">{{msg.chat}}<br><span class="msg-time">{{msg.created_at}}</span></p>
       </ion-label>
     </ion-item>
   </ion-list>

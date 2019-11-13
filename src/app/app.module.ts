@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, RouteReuseStrategy, Routes } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -26,12 +27,14 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 import {HeroPageModule} from './hero/hero.module';
 import {ChatPageModule} from './chat/chat.module';
+import {DirectionPageModule} from './direction/direction.module';
 import {NetworkPageModule} from './network/network.module';
 import {ReviewPageModule} from './review/review.module';
 import {ProfileviewPageModule} from './profileview/profileview.module';
 import {TermPageModule} from './term/term.module';
 import {PrivacyPageModule} from './privacy/privacy.module';
 import {InclusionPageModule} from './inclusion/inclusion.module';
+import {PaymentPageModule} from './payment/payment.module';
 
 import { IonicSelectableModule } from 'ionic-selectable';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
@@ -48,13 +51,18 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
   	IonicStorageModule.forRoot(),
     HeroPageModule,
     ChatPageModule,
+    DirectionPageModule,
     ReviewPageModule,
     ProfileviewPageModule,
     TermPageModule,
+    PaymentPageModule,
     PrivacyPageModule,
     IonicSelectableModule,
     NetworkPageModule,
     InclusionPageModule,
+
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,

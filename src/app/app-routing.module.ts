@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'network', loadChildren: './network/network.module#NetworkPageModule' },
   { path: 'ads', loadChildren: './ads/ads.module#AdsPageModule' },
   { path: 'inclusion', loadChildren: './inclusion/inclusion.module#InclusionPageModule' },
-  { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyPageModule' }
+  { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyPageModule' },
+  { path: 'direction', loadChildren: './direction/direction.module#DirectionPageModule' }
 ];
 @NgModule({
   imports: [

@@ -1,48 +1,19 @@
 
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="refresh"
-      pullingText="Release to refresh"
-      refreshingSpinner="crescent"
-      >
-    </ion-refresher-content>
-  </ion-refresher>
-  <div class="body">
-    <ion-row class="text-center">
-      <ion-col>
-        <img src="../../assets/img/header-logo.png" class="logo">
-        <button class="signout-btn" (click)="logout()">Signout</button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="user">
-      <ion-col col-12>
-        <img class="img" src="{{photo}}"><br>
-        <span class="label">Welcome</span><br>
-        <span class="name" *ngIf="user != undefined">{{ profile["first_name"]  }}</span><br>
-      </ion-col>
-    </ion-row>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PAYMENT METHOD</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <span class="service-label">
-      Select Payment Method
-    </span>
-  </div>  
+<ion-content fullscreen>
+   
   <ion-list lines="none">
-    <ion-row padding class="form-bar">
-      <ul class="progress">
-        <li class="progress__circle progress--active progress--done"></li>
-        <li class="progress__bar"></li>
-        <li class="progress__circle progress--active progress--done"></li>
-        <li class="progress__bar"></li>
-        <li class="progress__circle"></li>
-      </ul>
-    </ion-row>
-    <ion-item detail (click)="select('Credit/Debit Card')">
+    <ion-item detail (click)="dismiss()">
 		  <ion-label>
 		    Credit/Debit Card
 		  </ion-label>
 		</ion-item>
-		<ion-item detail (click)="select('Cash')">
+		<ion-item detail (click)="dismiss()">
 		  <ion-label>
 		    Cash
 		  </ion-label>

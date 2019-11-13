@@ -12,7 +12,7 @@ import { EnvService } from 'src/app/services/env.service';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-
+  environment:any;
 	user:any = {
     email: '',
     password: '',
@@ -40,8 +40,7 @@ export class TabsPage {
   }
 
   ionViewWillEnter() {
-    this.loading.present();
-
+    this.environment = this.env.ENVIRONMENT;
     this.storage.get('customer').then((val) => {
       this.user = val.data;
       this.profile = val.data.profile;  
@@ -51,10 +50,8 @@ export class TabsPage {
         .subscribe(data => {
             let response:any = data;
             this.count = response.data.length;
-            this.loading.dismiss();
         },error => { 
             console.log(error); 
-            this.loading.dismiss(); 
         });
 
     });

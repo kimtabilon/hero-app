@@ -38,7 +38,7 @@
       </ion-row>
       <ion-row padding class="field-wrap">
         <span class="field-text">Payment</span>
-        <ion-label class="field-label"><ion-icon name="cash" class="field-icon"></ion-icon></ion-label>
+        <ion-label class="field-label piso-sign">₱</ion-label>
         <ion-input [readonly]="true" class="field" value="{{job.amount}}"></ion-input>
       </ion-row>
 
@@ -107,6 +107,6 @@
     <button *ngIf="status == 'Waiting for Payment'" class="btn btn-login" (click)="tapPayWithCash()" >Pay with Cash</button>
     <button *ngIf="enableNoshow" class="btn btn-login" (click)="tapNoShow()" >NO SHOW</button>
     <button *ngIf="enableCancel" class="btn btn-signup" (click)="tapCancel()" >CANCEL JOB</button>    
-    <button *ngIf="status == 'Completed' || status == 'Paid'" class="btn btn-login" (click)="tapReview()" >Write a Review</button>
+    <button *ngIf="enableReview" class="btn btn-login" (click)="tapReview()" >Write a Review</button>
   </ion-list>
 </ion-content>

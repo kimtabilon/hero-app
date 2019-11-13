@@ -24,22 +24,19 @@
         </ion-avatar>
         <ion-label>
           <h2>{{hero.profile.first_name}} {{hero.profile.last_name}}</h2>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
+
+          <ion-icon slot="icon-only" name="star" *ngFor="let item of [].constructor(hero.rating); let i = index"></ion-icon>
+          <ion-icon slot="icon-only" name="star-outline" *ngFor="let item of [].constructor(5 - hero.rating); let i = index"></ion-icon>
+
           <h3>₱ {{ (hero.pivot.pay_per*1)*(input.payper) }}</h3>
-          <p *ngFor="let address of hero.profile.addresses" class="hero-address">
-            <!-- <ion-icon name="car"></ion-icon> 5.39 mi --> 
-            <ion-icon name="pin"></ion-icon> 
-            <span *ngIf="address.street!=null">{{address.street}},&nbsp;</span> 
-            <span *ngIf="address.barangay!=null">{{address.barangay}},&nbsp;</span> 
-            <span *ngIf="address.city!=null">{{address.city}},&nbsp;</span> 
-            <span *ngIf="address.province!=null">{{address.province}},&nbsp;</span> 
-            <span *ngIf="address.country!=null">{{address.country}}&nbsp;</span> 
-            <span *ngIf="address.zip!=null">{{address.zip}}</span><br>
-          </p>
+          <!-- {{ hero.route.distance.text }} -->
+          <span class="route" *ngIf="hero.route">
+            <ion-icon name="pin"></ion-icon> {{ hero.route.distance.text }} away<br>
+            <ion-icon name="clock"></ion-icon> {{ hero.route.duration.text }}
+          </span>
+          <span class="route" *ngIf="!hero.route">
+            Calculating distance...
+          </span>
         </ion-label>
         <ion-buttons slot="end">
           <ion-button (click)="selectHero(hero)">

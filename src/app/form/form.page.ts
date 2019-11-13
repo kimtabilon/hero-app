@@ -41,6 +41,7 @@ export class FormPage implements OnInit {
 
   customer_city:any;
   customer_province:any;
+  customer_current_addr:any;
 
   schedule_date:any = '';
   schedule_time:any = '';
@@ -139,12 +140,18 @@ export class FormPage implements OnInit {
       let customer_name:any = '';
 
       if(address.street) { customer_address += address.street + ', '; }
+      if(address.barangay) { 
+        customer_address += address.barangay + ', '; 
+        this.customer_current_addr += address.barangay + ', '; 
+      }
       if(address.city) { 
         customer_address += address.city + ', '; 
+        this.customer_current_addr += address.city + ', '; 
         this.customer_city = address.city;
       }
       if(address.province) { 
         customer_address += address.province + ', '; 
+        this.customer_current_addr += address.province + ', '; 
         this.customer_province = address.province;
       }
       if(address.country) { customer_address += address.country + ' '; }
@@ -429,7 +436,8 @@ export class FormPage implements OnInit {
           status: 'For Quotation',
           customer_city: this.customer_city,
           customer_province: this.customer_province
-        }
+        },
+        customer_address : this.customer_current_addr
       }
     });
 

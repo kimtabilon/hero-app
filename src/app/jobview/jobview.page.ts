@@ -42,6 +42,7 @@ export class JobviewPage implements OnInit {
 
   enableCancel:any = false;
   enableNoshow:any = false;
+  enableReview:any = false;
   
   status:any = '';
   photo:any = '';
@@ -168,11 +169,35 @@ export class JobviewPage implements OnInit {
               this.enableNoshow = false;
             }
 
+            if(this.job.status == 'Completed' ||
+               this.job.status == 'Paid'
+            ) { 
+              this.checkExistingReview();
+            }
         },error => { console.log(error); });    
     });
 
     // this.loading.dismiss();
 
+  }
+
+  checkExistingReview() {
+    this.http.post(this.env.HERO_API + 'reviews/checkExisting',
+       {
+         job_id: this.job.id,
+         hero_id: this.job.hero_id,
+         from: 'client',
+       }
+    )
+    .subscribe(data => {
+      this.enableReview = true;
+      let response:any = data;
+      if(response.data.length) {
+        this.enableReview = false;
+      }
+    },error => { 
+      this.enableReview = true;
+    },() => { });
   }
 
   tapBack() {

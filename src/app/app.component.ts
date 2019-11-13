@@ -11,7 +11,7 @@ import { EnvService } from './services/env.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  environment:any;
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,7 +30,6 @@ export class AppComponent {
       // this.splashScreen.hide();
       this.authService.getToken();
       this.initService.checkNetwork();
-      this.environment = this.env.ENVIRONMENT;
     });
   }
 

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EnvService } from 'src/app/services/env.service';
 import { ChatPage } from '../chat/chat.page';
+import { DirectionPage } from '../direction/direction.page';
 
 @Component({
   selector: 'app-job',
@@ -37,6 +38,7 @@ export class JobPage implements OnInit {
   myjobstitle:any = 'Please wait..';
   completedtitle:any = 'Completed';
   photo:any = '';
+  customer_address:any = '';
 
   constructor(
     private http: HttpClient,
@@ -74,6 +76,13 @@ export class JobPage implements OnInit {
     this.storage.get('customer').then((val) => {
       this.user = val.data;
       this.profile = val.data.profile;  
+
+      let address:any = this.profile.addresses[0];
+      // if(address.street) { this.customer_address += address.street + ', '; }
+      if(address.barangay) { this.customer_address += address.barangay + ', '; }
+      if(address.city) { this.customer_address += address.city + ', '; }
+      if(address.province) { this.customer_address += address.province + ', '; }
+      if(address.country) { this.customer_address += address.country + ' '; }
 
       if(this.profile.photo!==null) {
         this.photo = this.env.IMAGE_URL + 'uploads/' + this.profile.photo;
@@ -184,6 +193,16 @@ export class JobPage implements OnInit {
           this.openChat(job);        }
       });
     }
+
+    // if(job.hero_id != '') {
+    //   btns.push({
+    //     text: 'Get Direction',
+    //     icon: 'pin',
+    //     handler: () => {
+    //       this.getDirection(job);        }
+    //   });
+    // }
+
     btns.push({
       text: 'Cancel',
       icon: 'close',
@@ -203,6 +222,32 @@ export class JobPage implements OnInit {
       componentProps: { 
         job: job,
         customer: JSON.parse(job.customer_info)
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        let response:any = data;
+    });
+
+    return await modal.present();
+  }
+
+  async getDirection(job) {
+    // console.log(job);
+    let hero_address:any = '';
+    let address:any = job.hero.profile.addresses[0];
+    // if(address.street) { hero_address += address.street + ', '; }
+    if(address.barangay) { hero_address += address.barangay + ', '; }
+    if(address.city) { hero_address += address.city + ', '; }
+    if(address.province) { hero_address += address.province + ', '; }
+    if(address.country) { hero_address += address.country + ' '; }
+
+    const modal = await this.modalController.create({
+      component: DirectionPage,
+      componentProps: { 
+        customer_address: this.customer_address,
+        hero_address: hero_address
       }
     });
 

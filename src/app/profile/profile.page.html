@@ -133,7 +133,7 @@
       <ion-row padding class="field-wrap">
         <span class="field-text">Province</span>
         <ion-label class="field-label"><ion-icon name="map" class="field-icon"></ion-icon></ion-label>
-        <ion-select placeholder="Province" [(ngModel)]="address.province" class="field" (ionChange)="tapProvince($event)">
+        <ion-select [placeholder]="address.province" [(ngModel)]="address.province" class="field" (ionChange)="tapProvince($event)">
           <ion-select-option *ngFor="let prov of provinces" value="{{prov.provDesc}}">{{prov.provDesc}}</ion-select-option>
         </ion-select>
       </ion-row>
@@ -141,7 +141,7 @@
       <ion-row padding class="field-wrap">
         <span class="field-text">City</span>
         <ion-label class="field-label"><ion-icon name="pin" class="field-icon"></ion-icon></ion-label>
-        <ion-select placeholder="City" [(ngModel)]="address.city" class="field" (ionChange)="tapCity($event)">
+        <ion-select [placeholder]="address.city" [(ngModel)]="address.city" class="field" (ionChange)="tapCity($event)">
           <ion-select-option *ngFor="let city of cities" value="{{city.citymunDesc}}">{{city.citymunDesc}}</ion-select-option>
         </ion-select>
       </ion-row>
@@ -149,7 +149,7 @@
       <ion-row padding class="field-wrap">
         <span class="field-text">Barangay</span> 
         <ion-label class="field-label"><ion-icon name="home" class="field-icon"></ion-icon></ion-label>
-        <ion-select placeholder="Barangay" [(ngModel)]="address.barangay" class="field" (onChange)="tapBarangay($event)">
+        <ion-select [placeholder]="address.barangay" [(ngModel)]="address.barangay" class="field" (onChange)="tapBarangay($event)">
           <ion-select-option *ngFor="let brgy of barangays" value="{{brgy.brgyDesc}}">{{brgy.brgyDesc}}</ion-select-option>
         </ion-select>
       </ion-row>

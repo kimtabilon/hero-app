@@ -42,8 +42,13 @@ export class ChatPage implements OnInit {
   	if(this.job.hero.profile.photo!==null) {
       this.provider.photo = this.env.IMAGE_URL + 'uploads/' + this.job.hero.profile.photo;
     }
+    console.log(this.env.DEFAULT_IMG);
 
     this.client.photo = this.env.DEFAULT_IMG;
+
+    if(this.customer.photo != null) {
+      this.client.photo = this.customer.photo;
+    }
   	this.client.name = this.customer.first_name+' '+this.customer.last_name;
 
   	if(this.customer.photo!==null) {

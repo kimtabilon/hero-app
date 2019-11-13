@@ -142,6 +142,16 @@ const routes: Routes = [
           }
         ]
       },
+
+      {
+        path: 'direction',
+        children: [
+          {
+            path: '',
+            loadChildren: '../direction/direction.module#DirectionPageModule'
+          }
+        ]
+      },
       {
         path: '',
         redirectTo: '/login',
