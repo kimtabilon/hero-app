@@ -70,9 +70,9 @@ export class HeroPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void { 
-    console.log('loading distance...');
+    // console.log('loading distance...');
     for(let _hero of this.option.heroes) {
-      console.log('calculating route for '+_hero.email);
+      // console.log('calculating route for '+_hero.email);
       let hero_address:any = '';
       let address:any = _hero.profile.addresses[0];
       // if(address.street) { hero_address += address.street + ', '; }
@@ -83,7 +83,7 @@ export class HeroPage implements OnInit, AfterViewInit {
 
       _hero.location = hero_address;
       this.getRoute(_hero, this.customer_address, hero_address);
-      console.log(_hero);
+      // console.log(_hero);
 
     }
   }
@@ -106,10 +106,13 @@ export class HeroPage implements OnInit, AfterViewInit {
 
   async selectHero(hero) {
     // this.loading.present();
-    let amount:any = (hero.pivot.pay_per*1)*(this.input.payper);
+    let amount:any = (hero.pivot.pay_per*1)*(this.input.payper*1);
+    let booking_fee:any = (amount / 100) * this.env.BOOKING_FEE;
 
     this.job.hero_id = hero.id;
     this.job.amount = amount;
+    this.job.hero_fee = amount - booking_fee;
+    this.job.booking_fee = this.env.BOOKING_FEE;
     this.job.hours = this.input.payper;
 
     let photo:any = this.default_photo;

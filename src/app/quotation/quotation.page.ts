@@ -97,11 +97,16 @@ export class QuotationPage implements OnInit {
 
   tapHero(quote) {
     this.loading.present();
+    
+    let booking_fee:any = ((quote.amount*1) / 100) * this.env.BOOKING_FEE;
+
     this.http.post(this.env.HERO_API + 'jobs/modify',
         {
           job_id: this.job.id, 
           hero_id: quote.hero.id, 
-          amount: quote.amount
+          amount: quote.amount,
+          hero_fee: (quote.amount*1) - booking_fee,
+          booking_fee: this.env.BOOKING_FEE,
         })
       .subscribe(
         data => {

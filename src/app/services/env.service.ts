@@ -11,6 +11,7 @@ export class EnvService {
   APP_ID = 'hero435dsfhjdfgrt=';
   ONESIGNAL_APP_ID = '628c0fc8-6c15-4b5b-87ce-29b639379138';
   FCM_SENDER_ID = '694654925682';
+  BOOKING_FEE = 25;
 
   /** LIVE ENVIRONMENT */
   /*ENVIRONMENT = 'live';

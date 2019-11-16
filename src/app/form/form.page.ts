@@ -185,11 +185,14 @@ export class FormPage implements OnInit {
           if(response!==null) {
             this.option = response.data;
             this.form = this.option.form;
+
             this.title = this.option.name;
             this.quote_enable = this.option.enable_quote;
             this.attributes = JSON.parse(this.form.attributes);  
             this.payper = this.option.min;
 
+            console.log(this.attributes);
+            
             if(this.quote_enable == 'No') {
               this.button_text = 'Find Hero';
             } else {
@@ -315,6 +318,7 @@ export class FormPage implements OnInit {
 
     let error:any = 0;
     let message:any = '';
+    this.button_text = "Please wait..."
 
     let selected_date:any = this.schedule_date.substring(0,10);
     let current_date:any = this.current_date;
@@ -355,6 +359,30 @@ export class FormPage implements OnInit {
     // console.log(this.attributes);
 
     this.attributes.forEach((a) => {   
+
+      if(a.validations) {
+        console.log('validating...');
+        for(let validation of a.validations) {
+
+          if(validation.type == 'total must equal') {
+            let _total = 0;
+            for(let _field of validation.fields) {
+              a.fields.forEach((f) => {   
+                  if(_field == f.name) {
+                    _total += (f.input*1);
+                  }
+              });
+            }
+
+            if(_total > (validation.value*1)) {
+              error++;
+              message+= validation.error_msg;
+              // this.button_text = "Try Again";
+            }
+          }
+        }
+      }
+
       a.fields.forEach((f) => {   
           if(f.required) {
             if(f.input==null) {
@@ -364,17 +392,19 @@ export class FormPage implements OnInit {
           }
       });
     });
-
+      
+      
+  
     if(error == 0) {
-      console.log({
-          app_key: this.env.APP_ID, 
-          id: this.option.id, 
-          schedule_date: this.schedule_date, 
-          schedule_time: this.schedule_time, 
-          customer_city: this.customer_city,
-          customer_province: this.customer_province,
-          hours: this.payper,  
-        });
+      // console.log({
+      //     app_key: this.env.APP_ID, 
+      //     id: this.option.id, 
+      //     schedule_date: this.schedule_date, 
+      //     schedule_time: this.schedule_time, 
+      //     customer_city: this.customer_city,
+      //     customer_province: this.customer_province,
+      //     hours: this.payper,  
+      //   });
       this.button_text = 'Searching for Hero...';
       this.http.post(this.env.HERO_API + 'options/heroes',
         {
@@ -404,8 +434,10 @@ export class FormPage implements OnInit {
         }
       );
     } else {
+      // 
       this.alertService.presentToast(message); 
       this.loading.dismiss();
+      this.button_text = "Try Again";
     }
   }
 
