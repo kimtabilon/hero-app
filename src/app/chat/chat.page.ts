@@ -39,21 +39,12 @@ export class ChatPage implements OnInit {
   	this.provider.photo = this.env.DEFAULT_IMG;
   	this.provider.name = this.job.hero.profile.first_name+' '+this.job.hero.profile.last_name;
 
-  	if(this.job.hero.profile.photo!==null) {
+  	if(this.job.hero.profile.photo != null) {
       this.provider.photo = this.env.IMAGE_URL + 'uploads/' + this.job.hero.profile.photo;
-    }
-    console.log(this.env.DEFAULT_IMG);
+    } 
 
-    this.client.photo = this.env.DEFAULT_IMG;
-
-    if(this.customer.photo != null) {
-      this.client.photo = this.customer.photo;
-    }
+    this.client.photo = this.customer.photo;
   	this.client.name = this.customer.first_name+' '+this.customer.last_name;
-
-  	if(this.customer.photo!==null) {
-      this.client.photo = this.env.IMAGE_URL + 'uploads/' + this.customer.photo;
-    }
 
   	this.http.post(this.env.HERO_API + 'chats/byJob',{ job_id: this.job.id })
       .subscribe(data => {

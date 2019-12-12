@@ -362,6 +362,7 @@ export class JobviewPage implements OnInit {
     modal.onDidDismiss()
       .then((data) => {
         let response:any = data;
+        this.enableReview = false;
     });
 
     return await modal.present();

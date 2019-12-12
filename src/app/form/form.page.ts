@@ -365,6 +365,14 @@ export class FormPage implements OnInit {
         for(let validation of a.validations) {
 
           if(validation.type == 'total must equal') {
+            
+            let _requiredValue = 0;
+            a.fields.forEach((f) => {   
+                if(validation.value == f.name) {
+                  _requiredValue += (f.input*1);
+                }
+            });
+
             let _total = 0;
             for(let _field of validation.fields) {
               a.fields.forEach((f) => {   
@@ -374,7 +382,7 @@ export class FormPage implements OnInit {
               });
             }
 
-            if(_total > (validation.value*1)) {
+            if(_total != (_requiredValue*1)) {
               error++;
               message+= validation.error_msg;
               // this.button_text = "Try Again";

@@ -14,10 +14,10 @@ export class EnvService {
   BOOKING_FEE = 25;
 
   /** LIVE ENVIRONMENT */
-  /*ENVIRONMENT = 'live';
+  ENVIRONMENT = 'live';
   API_URL = 'http://heroserviceprovider.herokuapp.com/api/';
   HERO_ADMIN = 'http://heroserviceprovider.herokuapp.com/';
-  HERO_API = 'http://heroserviceprovider.herokuapp.com/api/';*/
+  HERO_API = 'http://heroserviceprovider.herokuapp.com/api/';
 
   /** LOCAL ENVIRONMENT */
   // ENVIRONMENT = 'local';
@@ -26,10 +26,10 @@ export class EnvService {
   // HERO_API = 'http://127.0.0.1:8000/api/';  
 
   /** TEST ENVIRONMENT */
-  ENVIRONMENT = 'test';
-  API_URL = 'http://herotestserver.herokuapp.com/api/';
-  HERO_ADMIN = 'http://herotestserver.herokuapp.com/';
-  HERO_API = 'http://herotestserver.herokuapp.com/api/';
+  // ENVIRONMENT = 'test';
+  // API_URL = 'http://herotestserver.herokuapp.com/api/';
+  // HERO_ADMIN = 'http://herotestserver.herokuapp.com/';
+  // HERO_API = 'http://herotestserver.herokuapp.com/api/';
 
   constructor() {
   }
