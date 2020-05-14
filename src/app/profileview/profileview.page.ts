@@ -15,6 +15,12 @@ export class ProfileviewPage implements OnInit {
   name:any = '';
   photo:any = '';
 
+  info:any = {
+    eb: '',
+    cert: '',
+    we: ''
+  }
+
   constructor(
   	public modalController: ModalController,
     public alertController: AlertController,
@@ -53,6 +59,16 @@ export class ProfileviewPage implements OnInit {
 
     this.address = customer_address;
     this.name = customer_name;
+
+    console.log(this.user.hero_info);
+
+    if(this.user.hero_info) {
+      this.info = {
+        eb: this.user.hero_info.educational_background,
+        cert: this.user.hero_info.certification,
+        we: this.user.hero_info.work_experience
+      }
+    }
   }
 
   parse(customer_info) {

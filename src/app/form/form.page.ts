@@ -275,7 +275,9 @@ export class FormPage implements OnInit {
                   schedule_time: this.schedule_time, 
                   status: 'For Quotation',
                   customer_city: this.customer_city,
-                  customer_province: this.customer_province
+                  customer_province: this.customer_province,
+                  hero_fee:0,
+                  booking_fee:0
                 }
               ).subscribe(
                   data => {

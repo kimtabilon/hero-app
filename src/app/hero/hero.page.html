@@ -28,7 +28,8 @@
           <ion-icon slot="icon-only" name="star" *ngFor="let item of [].constructor(hero.rating); let i = index"></ion-icon>
           <ion-icon slot="icon-only" name="star-outline" *ngFor="let item of [].constructor(5 - hero.rating); let i = index"></ion-icon>
 
-          <h3>₱ {{ (hero.pivot.pay_per*1)*(input.payper) }}</h3>
+          <h3 *ngIf="(input.payper*1) < 8">₱ {{ (hero.pivot.pay_per*1)*(input.payper*1) }}</h3>
+          <h3 *ngIf="(input.payper*1) == 8">Flat Rate: ₱ 700</h3>
           <!-- {{ hero.route.distance.text }} -->
           <span class="route" *ngIf="hero.route">
             <ion-icon name="pin"></ion-icon> {{ hero.route.distance.text }} away<br>

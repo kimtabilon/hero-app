@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Profile } from 'src/app/models/profile';
@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingService } from 'src/app/services/loading.service';
+import { PaymentPage } from '../payment/payment.page';
 
 @Component({
   selector: 'app-quotation',
@@ -47,7 +48,8 @@ export class QuotationPage implements OnInit {
     public activatedRoute : ActivatedRoute,
     private http: HttpClient,
     public loading: LoadingService,
-    private env: EnvService
+    private env: EnvService,
+    public modalController: ModalController,
   ) {
   	this.menu.enable(true);	
   }
@@ -64,6 +66,7 @@ export class QuotationPage implements OnInit {
 
   ionViewWillEnter() {
     this.loading.present();
+    
     this.storage.get('customer').then((val) => {
       this.user = val.data;
       this.profile = val.data.profile;
@@ -83,6 +86,7 @@ export class QuotationPage implements OnInit {
         this.http.post(this.env.HERO_API + 'jobs/byID',{id: job_id})
           .subscribe(data => {
               let response:any = data;
+              console.log(response.data);
               this.job = response.data;
               this.quotations = this.job.quotations;
               this.title = this.job.form.option.name;
@@ -95,9 +99,25 @@ export class QuotationPage implements OnInit {
     });
   }
 
+  async showPaymentMethod() {
+    const modal = await this.modalController.create({
+      component: PaymentPage,
+      componentProps: { 
+        
+      }
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        let response:any = data;
+    });
+
+    return await modal.present();
+  }
+
   tapHero(quote) {
     this.loading.present();
-    
+    this.showPaymentMethod();
     let booking_fee:any = ((quote.amount*1) / 100) * this.env.BOOKING_FEE;
 
     this.http.post(this.env.HERO_API + 'jobs/modify',
@@ -119,7 +139,7 @@ export class QuotationPage implements OnInit {
             photo = this.img_link+quote.hero.profile.photo;
           }
 
-          this.router.navigate(['/tabs/payment'],{ 
+          this.router.navigate(['/tabs/summary'],{ 
             queryParams: {
               service : JSON.stringify({ 
                 name: this.job.form.option.service.name + ' - ' + this.job.form.option.name,

@@ -106,7 +106,13 @@ export class HeroPage implements OnInit, AfterViewInit {
 
   async selectHero(hero) {
     // this.loading.present();
-    let amount:any = (hero.pivot.pay_per*1)*(this.input.payper*1);
+    let hours = this.input.payper*1;
+    let amount:any = (hero.pivot.pay_per*1)*hours;
+
+    if(hours==8) {
+      amount = 700;
+    }
+
     let booking_fee:any = (amount / 100) * this.env.BOOKING_FEE;
 
     this.job.hero_id = hero.id;

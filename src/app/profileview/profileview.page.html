@@ -26,6 +26,36 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-item-divider *ngIf="info.eb!=''">
+    <ion-label>
+      EDUCATIONAL BACKGROUND
+    </ion-label>
+  </ion-item-divider>
+
+  <ion-card *ngIf="info.eb!=''">
+    <ion-card-content [innerHTML]="info.eb" style="white-space: pre-line;"></ion-card-content>
+  </ion-card>
+
+  <ion-item-divider *ngIf="info.cert!=''">
+    <ion-label>
+      CERTIFICATION
+    </ion-label>
+  </ion-item-divider>
+
+  <ion-card *ngIf="info.cert!=''">
+    <ion-card-content [innerHTML]="info.cert" style="white-space: pre-line;"></ion-card-content>
+  </ion-card>
+
+  <ion-item-divider *ngIf="info.we!=''">
+    <ion-label>
+      WORK EXPERIENCE
+    </ion-label>
+  </ion-item-divider>
+
+  <ion-card *ngIf="info.we!=''">
+    <ion-card-content [innerHTML]="info.we" style="white-space: pre-line;"></ion-card-content>
+  </ion-card>
+
   <ion-item-divider>
     <ion-label>
       RATINGS & REVIEWS
@@ -44,5 +74,5 @@
       <br>
       {{review.comment}}
     </ion-card-content>
-    </ion-card>
+  </ion-card>
 </ion-content>
