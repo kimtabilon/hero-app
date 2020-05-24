@@ -118,7 +118,15 @@ export class RegisterPage implements OnInit {
       birthmonth: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
       country_phone: this.country_phone_group,
-      street: new FormControl('', Validators.required),
+
+      street: new FormControl(''),
+      barangay: new FormControl(''),
+      city: new FormControl(''),
+      province: new FormControl(''),
+      country: new FormControl(''),
+      zip: new FormControl(''),
+
+      /*street: new FormControl('', Validators.required),
       barangay: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       province: new FormControl('', Validators.required),
@@ -128,7 +136,7 @@ export class RegisterPage implements OnInit {
         Validators.maxLength(4),
         Validators.minLength(4),
         Validators.pattern('[0-9]+')
-      ])),
+      ])),*/
 
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -172,7 +180,7 @@ export class RegisterPage implements OnInit {
       { type: 'required', message: 'Phone is required.' },
       { type: 'validCountryPhone', message: 'The phone is incorrect.' }
     ],
-    'street': [
+    /*'street': [
       { type: 'required', message: 'Street is required.' }
     ],
     'barangay': [
@@ -192,7 +200,7 @@ export class RegisterPage implements OnInit {
       { type: 'minlength', message: 'Zip must be at least 4 characters long.' },
       { type: 'maxlength', message: 'Zip cannot be more than 4 characters long.' },
       { type: 'pattern', message: 'Your zip must contain only numbers.' }
-    ],
+    ],*/
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 5 characters long.' },
@@ -301,6 +309,9 @@ export class RegisterPage implements OnInit {
     // console.log(values);
     this.signup_btn = 'Please wait...';
     if(this.validations_form.valid) {
+      /*values.barangay.brgyDesc, 
+            values.city.citymunDesc, 
+            values.province.provDesc, */
 
       this.http.post(this.env.API_URL + 'customer/mail/check',{email: values.email})
       .subscribe(data => {
@@ -310,9 +321,9 @@ export class RegisterPage implements OnInit {
             values.last_name, 
             
             values.street, 
-            values.barangay.brgyDesc, 
-            values.city.citymunDesc, 
-            values.province.provDesc, 
+            values.barangay, 
+            values.city, 
+            values.province, 
             values.country, 
             values.zip, 
 
